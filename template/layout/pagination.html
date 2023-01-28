@@ -1,0 +1,34 @@
+{{define "pagination"}}
+<div>
+  {{if gt .PageNum 1}}
+  <ul class="pagination">
+    {{if gt .Page 1}}
+    <li class="pagination-prev iconfont icon-jiantouyou"></li>
+    {{end}} {{range $index, $elem := .Pages}}
+    <li
+      class="pagination-btn"
+      {{if
+      eq
+      $elem
+      $.Page}}
+      active
+      {{end}}
+      value="{{$elem}}"
+    >
+      {{if eq $elem 0}}
+      <span style="cursor: auto">...</span>
+      {{else}}
+      <a href="?page={{$elem}}">{{$elem}}</a>
+      {{end}}
+    </li>
+    {{end}} {{if .PageEnd}}
+    <li class="pagination-next iconfont icon-jiantouyou"></li>
+    {{end}}
+  </ul>
+  {{else}}
+    <ul class="pagination">
+      <li class="pagination-total">共{{.PostNum}}条</li>
+    </ul>
+  {{end}}
+</div>
+{{end}}

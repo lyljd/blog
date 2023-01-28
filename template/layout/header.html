@@ -1,0 +1,38 @@
+{{define "header"}}
+<header>
+    <div class="header-wrap">
+        <div class="header-left">
+            <!-- 导航 -->
+            <ul class="header-nav">
+                {{range $index,$elem := .Navigation}} {{if isODD $index}}
+                <li><a href="{{getNextName $.Navigation $index}}">{{$elem}}</a></li>
+                {{end}} {{end}}
+            </ul>
+        </div>
+        <div class="header-right">
+            <div class="header-search">
+                <input id="search-input" type="text" placeholder="搜索"/>
+                <i class="iconfont icon-search"></i>
+                <div class="search-drop"></div>
+            </div>
+            <a class="login-action" id="loa">
+                <button class="login-btn">登录</button>
+            </a>
+            <div class="login-end">
+                <p class="iconfont icon-yonghu"><span class="login-username"></span></p>
+                <ul class="login-drop">
+                    <a id="wr">
+                        <li>写作</li>
+                    </a>
+                    <li class="login-out">退出登录</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("loa").href = "/login?from=" + window.location.href
+        document.getElementById("wr").href = "/writing?from=" + window.location.href
+    </script>
+</header>
+
+{{ end }}
